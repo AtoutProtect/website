@@ -1,0 +1,9 @@
+RewriteEngine On
+RewriteBase /
+RewriteRule ^produit-([0-9][0-9][0-9])$ index.php?Produit=$1&%{QUERY_STRING} [NC,L]
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)/$ /$1 [L,R=301]
+RewriteRule ^(.*)$ index.php?Page=$1&%{QUERY_STRING} [NC,L]
+
+#produit specifique :
+#RewriteRule ^produits$ index.php?Page=commande [L]
