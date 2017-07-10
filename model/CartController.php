@@ -9,9 +9,30 @@ class CartController
     private $count = 0;
     private $totalPrice=0;
 
+
+     function __construct($args=null){
+
+     if ($args !=null){
+         foreach($args as $key => $val) {
+                 $this->{$key} = $val;
+         }
+         $this->isNull=false;
+         $this->set();
+     }
+
+    }
+
+    public function set()
+    {
+        $_SESSION['cart']=null;
+        $_SESSION['cart']=serialize($this);
+    }
+
+
     public function addToCart($product)
     {
-
+        $this->products[]=$product;
+        $this->set();
     }
 
     public function ResetCart()

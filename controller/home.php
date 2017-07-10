@@ -6,7 +6,7 @@
        
         $user1 = serialize($user);
        // put($user,"utilisateur");
-       return user1;
+       return $user1;
     }
 
  $userController = new UserController(array(
@@ -22,5 +22,5 @@
      $test = insertUser($userController);
      
 
-     var_dump($test);
+     //var_dump($test);
 require WEBROOT.'/public/view_home.php';

@@ -9,15 +9,15 @@
 
 class UserController
 {
-    
-    private $name;
-    private $nickname;
-    private $email;
-    private $adress;
     private $password;
-    private $isConfirmed;
+    private $email;
+    private $username;
+    private $nickname;
     private $privilege;
-    public $isNull=true;
+    private $adress;
+
+
+
 
      function __construct($args=null){
 
@@ -25,7 +25,6 @@ class UserController
          foreach($args as $key => $val) {
                  $this->{$key} = $val;
          }
-         $this->isNull=false;
          $this->set();
      }
 
@@ -52,10 +51,6 @@ class UserController
         $this->isNull=$_SESSION['user']['isNull'];
     }
 
-    public function IsConfirmed()
-    {
-        return $this->isConfirmed;
-    }
 
     public function setPrivilege($privilege)
     {
@@ -70,12 +65,6 @@ class UserController
 
     }
 
-    public function setIsConfirmed($isConfirmed)
-    {
-        $this->isConfirmed = $isConfirmed;
-        //updateUser("isConfirmed",$isConfirmed);
-        $this->set();
-    }
 
     public function updateUser($attr,$value)
     {
@@ -88,14 +77,23 @@ class UserController
 
     }
 
-    /*public function insertUser($user)
+    public function insertUser()
     {
-        $userarray = new array();
-        $user = serialize($user);
-       // put($user,"utilisateur");
-       return 
+        $db=new database();
+        $result=null;
+        $userarray = (array)$this;
+        //$user = serialize($user);
+        $sql="insert into user values ('','".$this->password."','".$this->email."','".$this->username."','".$this->nickname."','".$this->privilege."','".$this->adress."');";
+        if($db->rowInsert($sql)){
+            $result = true;
+        }
+        else{
+            $result = false;
+        }
+        print_r($result);
+       return $result;
     }
-*/
+
     public function setPassword($password)
     {
         $this->password = $password;
@@ -121,7 +119,7 @@ class UserController
 
     public function getName()
     {
-        return $this->name;
+        return $this->username;
     }
 
     public function getNickname()

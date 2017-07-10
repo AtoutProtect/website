@@ -10,7 +10,7 @@ require "../webdefinition.php";/*Fichier a appeler uniquement dans l'index ainsi
     }
 
  $userController = new UserController(array(
-         'name'     => 'adrien',
+         'username'     => 'adrien',
          'nickname' => 'carre',
          'email'    => 'adrien.tigram@hotmail.fr',
          'adress'   => '2 impasse du tarbezou',

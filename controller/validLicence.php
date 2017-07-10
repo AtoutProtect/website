@@ -1,5 +1,5 @@
    <?php
-   if(isset($_GET['key']) && isset($_GET['email']) ){
+   if(isset($_GET['key'])){
     $key =$_GET['key'];  
     $email=$_GET['email'];
     //selectionner la ligne dans commande quand clé==licence.serial et achat.licence_id=licence.licence.id
@@ -10,7 +10,8 @@
       $id_licence=$select2["Licence_ID"];*/
 
       $licence_proprietaire = rowSelect(achat,array("user_ID"=>$user_id,"licence_ID"=>$id_licence));
-      if (/*$licence_proprietaire*/){
+      $licence_valid = rowSelect(achat,array("Licence_Serial"=>$key));
+      if ($licence_valid/*$licence_proprietaire*/){
           echo "true";
       }
         

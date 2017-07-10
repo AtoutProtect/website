@@ -29,11 +29,11 @@ $_SESSION["connected"]=0;
         <div class="container text-center">
             <div class="test">
                 <ul class="nav navbar-nav">
-                    <li><a href="">Accueil</a></li>
-                
-                
-                     <li><a href="">Produits</a></li>
-    <li><a href="">Promotions</a></li>
+                    <li><a href="/home">Accueil</a></li>
+
+
+                    <li><a href="/produits">Produits</a></li>
+                    <li><a href="/promo">Promotions</a></li>
                 </ul>
 
                 <ul class="nav navbar-nav text-center">
@@ -42,52 +42,10 @@ $_SESSION["connected"]=0;
                     </li>
                 </ul>
                 <ul class="nav navbar-nav text-right">
-                    <li><a href="">Mon compte</a></li>
-                    <li><a href="">A propos</a></li>
-                    <li><a href="">Contact</a></li>
+                    <li><a href="/editProfil">Mon compte</a></li>
+                    <li><a href="/propos">A propos</a></li>
+                    <li><a href="/contact">Contact</a></li>
                 </ul>
             </div>
         </div>
     </nav>
-
-
-    <div class="content">
-       
-       <div id="myCarousel" class="carousel slide" data-ride="carousel">
-  
-
-  <!-- Wrapper for slides -->
-  <div class="carousel-inner" role="listbox">
-    <div class="item active">
-     <!-- <div class="carousel_item"></div>-->
-  <?php echo  "<img src='".URL."/public/img/cloud-software-solutions.jpg'  />" ?>
-      <div class="carousel-caption">
-        <h1>Atout Protect</h1>
-        <h4>Gerer vos solutions en un click.</h4>
-        <button type="button" class="btn btn-primary btn-lg">S'inscrire</button>
-      </div>
-    </div>
-
-    <div class="item">
-  <?php echo  "<img src='".URL."/public/img/1.jpg'  />" ?>
-     <div class="carousel-caption">
-        <h1>Atout Protect</h1>
-        <h4>Acceder a toutes nos solutions.</h4>
-                <button type="button" class="btn btn-primary btn-lg">S'inscrire</button>
-
-      </div>
-    </div>
-
-    
-  </div>
-
-  <!-- Left and right controls -->
-  <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
-    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-    <span class="sr-only">Previous</span>
-  </a>
-  <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
-    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-    <span class="sr-only">Next</span>
-  </a>
-</div>
