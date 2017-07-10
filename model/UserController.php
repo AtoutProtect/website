@@ -83,7 +83,7 @@ class UserController
         $result=null;
         $userarray = (array)$this;
         //$user = serialize($user);
-        $sql="insert into user values ('','".$this->password."','".$this->email."','".$this->username."','".$this->nickname."','".$this->privilege."','".$this->adress."');";
+        $sql="insert into user values (0,'".$this->password."','".$this->email."','".$this->username."','".$this->nickname."','".$this->privilege."','".$this->adress."');";
         if($db->rowInsert($sql)){
             $result = true;
         }

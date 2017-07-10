@@ -23,14 +23,25 @@ $passw = sha1($_POST['passw']);
              'password'=>$passw
          )
      );
-     $userController->insertUser();
-echo "
+     if($userController->insertUser()){
+         echo "
  <script>
   $('.messageresult').empty();
  $('.messageresult').append('vous etes desormais inscrit.');
          $('.modal').modal('show');
      </script>
 ";
+     }
+     else{
+         echo "
+ <script>
+  $('.messageresult').empty();
+ $('.messageresult').append('Une erreur est survenu, merci de reessayer.');
+         $('.modal').modal('show');
+     </script>
+";
+     }
+
 
  }
  else{
