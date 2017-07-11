@@ -15,10 +15,11 @@ $passw = sha1($_POST['passw']);
 
 
      $userController = new UserController(array(
-             'username'     => $prenom,
+             'ID'       =>"0",
+             'name'     => $prenom,
              'nickname' => $nom,
              'email'    => $email,
-             'adress'   => 'null',
+             'adresse'   => 'null',
              'privilege'=> '0',
              'password'=>$passw
          )

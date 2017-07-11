@@ -3,7 +3,9 @@
 
 require "webdefinition.php";/*Fichier a appeler uniquement dans l'index ainsi que les scripts php appelés par ajax */
 
-
+if(isset($_POST['deconnection']) && $_POST['deconnection']==1){
+	session_destroy();
+}
 
 include('public/header.php');
 

@@ -21,6 +21,9 @@ $_SESSION["connected"]=0;
     <script type="text/javascript" src="public/js/jquery-3.1.1.min.js"></script>
     <script src="public/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
     <script src="public/js/site.js"></script>
+    <script src="public/js/bootstrap-editable.min.js"></script>
+    <link rel="stylesheet" href="public/css/bootstrap-editable.css">
+
 
 </head>
 
@@ -42,7 +45,7 @@ $_SESSION["connected"]=0;
                     </li>
                 </ul>
                 <ul class="nav navbar-nav text-right">
-                    <li><a href="/editProfil">Mon compte</a></li>
+                    <li><a href="/compte">Mon compte</a></li>
                     <li><a href="/propos">A propos</a></li>
                     <li><a href="/contact">Contact</a></li>
                 </ul>

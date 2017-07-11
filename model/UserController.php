@@ -9,12 +9,13 @@
 
 class UserController
 {
-    private $password;
-    private $email;
-    private $username;
-    private $nickname;
-    private $privilege;
-    private $adress;
+    public $ID;
+    public $password;
+    public $email;
+    public $name;
+    public $nickname;
+    public $privilege;
+    public $adresse;
 
 
 
@@ -25,7 +26,7 @@ class UserController
          foreach($args as $key => $val) {
                  $this->{$key} = $val;
          }
-         $this->set();
+
      }
 
     }
@@ -34,8 +35,27 @@ class UserController
    a la connection , recuperer les données de l'user et les stocker dans la session par une instance
     */
 
+public function connect(){
+    $this->set();
+}
+
+public function exist(){
+    $db=new database();
+    $result=null;
+    $userarray=(array)$this;
+    foreach ($userarray as $key=>$value){
+        if (empty($value)){
+            unset($userarray[$key]);
+        }
+    }
+    print_r($userarray);
+    $result=$db->rowSelect($userarray,'user');
+
+   return $result;
+}
     public function set()
     {
+        unset($_SESSION['user']);
         $_SESSION['user']=serialize($this);
     }
 
@@ -44,7 +64,7 @@ class UserController
         $this->name=$_SESSION['user']['name'];
         $this->nickname=$_SESSION['user']['nickname'];
         $this->email=$_SESSION['user']['email'];
-        $this->adress=unserialize($_SESSION['user']['adress']);
+        $this->adresse=unserialize($_SESSION['user']['adresse']);
         $this->password=$_SESSION['user']['password'];
         $this->isConfirmed=$_SESSION['user']['isConfirmed'];
         $this->privilege=$_SESSION['user']['privilege'];
@@ -73,24 +93,34 @@ class UserController
             //changement dans la base de donnée
 
         //return true/false
-        
 
+
+    }
+
+    public function editableInfos(){
+        $editablesInformations = array(
+        "name"=>$this->name,
+        "nickname"=>$this->nickname,
+        "email"=>$this->email,
+        "adresse"=>$this->adresse
+        );
+        return $editablesInformations;
     }
 
     public function insertUser()
     {
         $db=new database();
         $result=null;
-        $userarray = (array)$this;
+       $userarray=(array)$this;
         //$user = serialize($user);
-        $sql="insert into user values (0,'".$this->password."','".$this->email."','".$this->username."','".$this->nickname."','".$this->privilege."','".$this->adress."');";
-        if($db->rowInsert($sql)){
+        $sql="insert into user values (0,:password,:email,:name,:nickname,:privilege,:adresse);";
+
+        if($db->rowInsert($sql,$userarray)){
             $result = true;
         }
         else{
             $result = false;
         }
-        print_r($result);
        return $result;
     }
 
@@ -106,9 +136,9 @@ class UserController
         $this->set();
     }
 
-    public function getAdress()
+    public function getadresse()
     {
-        return $this->adress;
+        return $this->adresse;
 
     }
 
@@ -119,7 +149,7 @@ class UserController
 
     public function getName()
     {
-        return $this->username;
+        return $this->name;
     }
 
     public function getNickname()
@@ -127,9 +157,9 @@ class UserController
         return $this->nickname;
     }
 
-    public function setAdress($adress)
+    public function setadresse($adresse)
     {
-        $this->adress = $adress;
+        $this->adresse = $adresse;
         $this->set();
     }
 
@@ -154,7 +184,7 @@ class UserController
         $array = array(
             'name'=>$this->getName(),
             'nickname'=>$this->getNickname(),
-            'adress'=>$this->getAdress(),
+            'adresse'=>$this->getadresse(),
             'email'=>$this->getEmail(),
             'password'=>$this->getPassword(),
             'privilege'=>$this->getPrivilege()

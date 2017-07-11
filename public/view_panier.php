@@ -8,7 +8,7 @@
 if(isset($_SESSION['user']) && $_SESSION['user']!=null){
 $userController=new UserController();
 $userController=unserialize($_SESSION['user']);
-    echo $userController->getAdress();
+    echo $userController->getadresse();
     echo $userController->getName();
     echo $userController->getNickname();
 }
