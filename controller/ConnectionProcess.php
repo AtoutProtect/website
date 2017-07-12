@@ -14,7 +14,6 @@ if(!empty($_POST['email']) && !empty($_POST['passw']) ){
     );
     $existingUser = $userController->exist();
 if(!empty($existingUser)){
-print_r($existingUser);
 $userController = new UserController($existingUser);
 $userController->connect();
 echo"Vous etes maintenant connecté...<script>location.reload();</script>";
@@ -28,20 +27,6 @@ else{
     echo"veuillez entrer vos identifiants...";
 }
 
-    // $test = insertUser($userController);
-     
-
-   //  var_dump($test);
-/*
-if(isset($_POST['mail']) && isset($_POST['password']))
-{
-
-}
-else
-{
-    
-}
-*/
 
 
 

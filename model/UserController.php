@@ -48,7 +48,6 @@ public function exist(){
             unset($userarray[$key]);
         }
     }
-    print_r($userarray);
     $result=$db->rowSelect($userarray,'user');
 
    return $result;

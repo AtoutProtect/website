@@ -11,17 +11,14 @@ $args=array(
 $key=>$value
 
 );
-    print_r($args);
 $conditions=array(
 "ID"=>$usercontroller->ID
 );
-print_r($conditions);
 $db = new database();
 if($db->rowUpdate($args,'user',$conditions)){
 /*Mise a jour de l'utilisateur coté serveur:*/
 $usercontroller->{$key}=$value;
 $usercontroller->set();
-    print_r("tout est ok");
 
 }
 
@@ -29,7 +26,6 @@ $usercontroller->set();
 
 }
 else{
-    print_r("erreur");
 }
 
 

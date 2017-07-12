@@ -20,6 +20,25 @@ class database {
         }
     }
 
+public function callSP($name,$params){
+    $result =null;
+    $array_keys = array_keys($params);
+    $last_key = end($array_keys);
+    $db = new PDO('mysql:host=localhost;dbname=bdd_ap','root','');
+    $sql="CALL ".$name."(";
+    foreach ($params as $key=>$value){
+        $sql.=":".$key;
+        if($last_key != $key){
+            $sql.=",";
+        }
+    }
+    $sql.=")";
+    $sth = $db->prepare($sql);
+    $sth->execute($params);
+    $result = $sth->fetch(PDO::FETCH_ASSOC);
+    return $result;
+}
+
     public  function rowInsert($sql,$array_data=null)
     {
         $result =null;
@@ -29,7 +48,6 @@ class database {
         if(isset($array_data['ID'])){
             unset($array_data['ID']);
         }
-        print_r($array_data);
         if ($sth->execute($array_data)){
             $result=true;
         }
@@ -80,9 +98,7 @@ class database {
 
        }
         $sth = $db->prepare($sql);
-        print_r($sql);
         $params =array_merge($args, $conditions);
-        print_r($params);
         if ($sth->execute($params))
             $result=true;
         else{
@@ -92,13 +108,20 @@ class database {
 return $result;
     }
 
-    public  function rowSelect($args=null,$table,$limit=1){
+    public  function rowSelect($args=null,$tables,$limit=1){
 
         $db = new PDO('mysql:host=localhost;dbname=bdd_ap','root','');
-
-        $sql="select * from ".$table;
+        $array_keys = array_keys($tables);
+        $last_key = end($array_keys);
+        $sql="select * from ";
+        foreach ($tables as $key=>$value){
+            $sql.=$value;
+            if($key != $last_key){
+                $sql.=",";
+            }
+        }
         if($args != null){
-        $sql.=" where ";
+            $sql.=" where ";
             $array_keys = array_keys($args);
             $last_key = end($array_keys);
             foreach ($args as $key=>$value){
@@ -114,7 +137,6 @@ return $result;
             if ($limit==1){
                 $sql.=" limit 1";
                 $sth = $db->prepare($sql);
-                print_r($sql);
                 $sth->execute($args);
                 $result = $sth->fetch(PDO::FETCH_ASSOC);
 
@@ -131,7 +153,6 @@ return $result;
             if ($limit==1){
                 $sql.=" limit 1";
                 $sth = $db->prepare($sql);
-                print_r($sql);
                 $sth->execute();
                 $result = $sth->fetch(PDO::FETCH_ASSOC);
             }
@@ -142,8 +163,8 @@ return $result;
                 $result = $sth->fetchAll(PDO::FETCH_ASSOC);
             }
         }
-       
-       
+
+
         return($result);
 
 

@@ -5,7 +5,6 @@ if(isset($_SESSION['user']) && !empty(isset($_SESSION['user']))){
 $arrayUser= unserialize($_SESSION['user']);
  $usercontroller=new UserController($arrayUser);
  $informationsForm="<table class='table table-striped table-sm'>";
-print_r($usercontroller);
     foreach ($usercontroller->editableInfos() as $key=>$value){
 if (empty($value) || !isset($value) || $value=="null"){
     $value="entrer votre ".$key;
