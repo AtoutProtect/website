@@ -17,3 +17,8 @@ echo $informationsForm;
         $('#adresse').editable();
     });
 </script>
+
+<?php
+if(isset($_SESSION['cart'])){
+ 
+}

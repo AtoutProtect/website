@@ -1,7 +1,15 @@
 <?php
 
 $_SESSION["connected"]=0;
+print_r($_SESSION['cart']);
+if(isset($_SESSION['cart'])){
+$count = $_SESSION['cart']['count'];
+if ($count > 0){
 
+    $html_count="<span class='badge'>".$count."</span>";
+}
+
+}
 ?>
 
 <!doctype html>
@@ -23,7 +31,9 @@ $_SESSION["connected"]=0;
     <script src="public/js/site.js"></script>
     <script src="public/js/bootstrap-editable.min.js"></script>
     <link rel="stylesheet" href="public/css/bootstrap-editable.css">
-
+    <script type="text/javascript">
+      
+    </script>
 
 </head>
 
@@ -46,7 +56,7 @@ $_SESSION["connected"]=0;
                 </ul>
                 <ul class="nav navbar-nav text-right">
                     <li><a href="/compte">Mon compte</a></li>
-                    <li><a href="/propos">A propos</a></li>
+                    <li><a href="/panier">Panier<?php if(isset($html_count)){ echo $html_count; }?></a></li>
                     <li><a href="/contact">Contact</a></li>
                 </ul>
             </div>

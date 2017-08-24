@@ -48,14 +48,14 @@ public function exist(){
             unset($userarray[$key]);
         }
     }
-    $result=$db->rowSelect($userarray,'user');
+    $result=$db->rowSelect($userarray,array('user'));
 
    return $result;
 }
     public function set()
     {
         unset($_SESSION['user']);
-        $_SESSION['user']=serialize($this);
+        $_SESSION['user']=(array)$this;
     }
 
     public function get()//ne sert a rien
@@ -114,7 +114,7 @@ public function exist(){
         //$user = serialize($user);
         $sql="insert into user values (0,:password,:email,:name,:nickname,:privilege,:adresse);";
 
-        if($db->rowInsert($sql,$userarray)){
+        if($db->rowInsert($sql,$userarray) !== false){
             $result = true;
         }
         else{

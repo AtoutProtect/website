@@ -6,11 +6,13 @@ require "../webdefinition.php";/*Fichier a appeler uniquement dans l'index ainsi
 if(!empty($_POST['name']) && !empty($_POST['value']) && isset($_SESSION['user']) ) {
     $key = $_POST['name'];
     $value = $_POST['value'];
-    $usercontroller=new UserController(unserialize($_SESSION['user']));
+    $usercontroller=new UserController($_SESSION['user']);
+
 $args=array(
 $key=>$value
 
 );
+var_dump($args);
 $conditions=array(
 "ID"=>$usercontroller->ID
 );

@@ -7,6 +7,10 @@ if(isset($_POST['deconnection']) && $_POST['deconnection']==1){
 	session_destroy();
 }
 
+if(!isset($_SESSION['cart'])){
+	$_SESSION['cart']=null;
+}
+
 include('public/header.php');
 
 	if(isset($_GET['Page']) && !empty($_GET['Page'])){

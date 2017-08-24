@@ -8,10 +8,14 @@
  */
 class OrderController
 {
-    private $id;
-    private $user;
-    private $products;
-    private $total_price;
+    public $id;
+    public $user;
+    public $products;
+    public $total_price;
+
+    public function saveOrder(){
+        
+    }
 
     public function setId($id)
     {

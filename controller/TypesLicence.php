@@ -4,7 +4,7 @@ class TypesLicence
 {
 static public function getLicencesTypes()
 {
-    $database = new Database();
-    return $database->read("Types_Licences",10);
+    $database = new database();
+    return $database->rowSelect(null,"Types_Licences",10);
 }
 }

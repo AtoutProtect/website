@@ -13,4 +13,5 @@ function mon_autoloader($classe){
 spl_autoload_register('mon_autoloader');
 define('WEBROOT',dirname( __FILE__ ));
 define('DS',DIRECTORY_SEPARATOR);
-define('URL',"http://atoutprotect");
+//define('URL',"http://atoutprotect");
+define('URL',"http://atout-protect.tk");

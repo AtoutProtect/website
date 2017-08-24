@@ -7,6 +7,8 @@ RewriteCond %{REQUEST_URI} !^/inscriptionForm\.php$
 RewriteCond %{REQUEST_URI} !^/ConnectionProcess\.php$
 RewriteCond %{REQUEST_URI} !^/editInformation\.php$
 RewriteCond %{REQUEST_URI} !^/validLicence\.php$
+RewriteCond %{REQUEST_URI} !^/AddToCart\.php$
+RewriteCond %{REQUEST_URI} !^/deleteProduct\.php$
 RewriteRule ^(.*)$ index.php?Page=$1&%{QUERY_STRING} [NC,L]
 #produit specifique :
 #RewriteRule ^produits$ index.php?Page=commande [L]

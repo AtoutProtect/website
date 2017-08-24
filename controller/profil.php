@@ -2,7 +2,7 @@
 
 
 if(isset($_SESSION['user']) && !empty(isset($_SESSION['user']))){
-$arrayUser= unserialize($_SESSION['user']);
+$arrayUser= $_SESSION['user'];
  $usercontroller=new UserController($arrayUser);
  $informationsForm="<table class='table table-striped table-sm'>";
     foreach ($usercontroller->editableInfos() as $key=>$value){
@@ -16,6 +16,8 @@ if (empty($value) || !isset($value) || $value=="null"){
         $informationsForm.="</tr>";
     }
     $informationsForm.="</table>";
+    
+    
 
 
     require WEBROOT.'/public/view_profil.php';

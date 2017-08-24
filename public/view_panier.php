@@ -1,23 +1,11 @@
 <div class="corp">
 
-<?php
 
 
 
-/* Mettre dans l'index pour recup une seule fois l'user a la connect sur le site*/
-if(isset($_SESSION['user']) && $_SESSION['user']!=null){
-$userController=new UserController();
-$userController=unserialize($_SESSION['user']);
-    echo $userController->getadresse();
-    echo $userController->getName();
-    echo $userController->getNickname();
-}
-
- ?>
-
-   <div class="row mb50"> 
+   <div class="row mb50">
        <div class="col-lg-8">
-           <h1 id="panier">Mon Panier </h1><button type="button" class="btn btn-success">Finaliser mes achats</button>
+           <h1 id="panier">Mon Panier </h1><a href="/payment" class="btn btn-success">Finaliser mes achats</a>
         </div>
    </div>
    <div class="row">
@@ -26,49 +14,29 @@ $userController=unserialize($_SESSION['user']);
 <table class="table table-striped table_panier">
 
     <tr>
-        <td>Date : </td>
+
         <td id="nom_produit">Produit :</td>
         <td>Quantité : </td>
+        <td>Type licence :</td>
         <td>Prix : </td>
         <td></td>
 
     </tr>
-    <tr>
-        <td>10/12/2016</td>
-        <td id="nom_produit">Software n1 :</td>
-        <td>1</td>
-        <td id="prix_produit">49e  </td>
-        <td><button type="button" class="btn btn-danger">Supprimer</button></td>
-    </tr>
-    <tr>
-        <td>10/12/2016</td>
-        <td id="nom_produit">Software n1 :</td>
-        <td>1</td>
-        <td id="prix_produit">49e </td>
-        <td><button type="button" class="btn btn-danger">Supprimer</button></td>
-    </tr>
-    <tr>
-        <td>10/12/2016</td>
-        <td id="nom_produit">Software n1 :</td>
-        <td>1</td>
-        <td id="prix_produit">49e  </td>
-        <td><button type="button" class="btn btn-danger">Supprimer</button></td>
-    </tr>
-    <tr>
-        <td>10/12/2016</td>
-        <td id="nom_produit">Software n1 :</td>
-        <td>1</td>
-        <td id="prix_produit">49e </td>
-        <td><button type="button" class="btn btn-danger">Supprimer</button></td>
+    <?php
 
-    </tr>
+    $panier = new CartController($_SESSION['cart']);
+    foreach($panier->products as $product){
+
+    ?>
     <tr>
-        <td>10/12/2016</td>
-        <td id="nom_produit">Software n1 :</td>
+        <td id="nom_produit"><?php echo $product['nom'] ?> :</td>
         <td>1</td>
-        <td id="prix_produit">49e </td>
-       <td><button type="button" class="btn btn-danger">Supprimer</button></td>
+        <td><?php echo $product['type_licence'] ?></td>
+        <td id="prix_produit"><?php echo $product['prix_total'] ?>  </td>
+        <td><button onclick="deleteProduct(this);" id="<?php echo $product['ID'] ?>" class="btn btn-danger">Supprimer</button></td>
     </tr>
+    <?php } ?>
+
 
 </table>
 </div>
@@ -98,3 +66,27 @@ $userController=unserialize($_SESSION['user']);
     </div>
 </div>
 </div>
+<script>
+function deleteProduct(element){
+
+    var product_id=$(element).attr('id');
+
+
+    $.ajax({
+        url:'../controller/deleteProduct.php',
+        type:'POST',
+        data:'product_id='+product_id,
+        dataType:'html',
+        success : function(e){
+
+            $('.badge').empty();
+            $('.badge').append(e);
+            location.reload();
+        }
+
+    });
+
+
+
+}
+</script>
