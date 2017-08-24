@@ -10,14 +10,14 @@ require "../webdefinition.php";
     $db=new database();
     $licence=$db->callSP('check_licence',$args);
     if($licence != null){
-        echo "Clé valide.";
+        echo date("d/m/Y");
     }
     else{
-        echo "Clé invalide,veuillez reessayer...";
+        echo "false";
     }
 
 }
 else{
-    echo "aucuns parametres...";
+    echo "false";
 }
  

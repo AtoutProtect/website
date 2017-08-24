@@ -85,6 +85,15 @@ if($responseArray['ACK'] =='Success'){
     curl_close($curl);
     $responseArray=array();
     parse_str($response,$responseArray);
+    $db=new database();
+    $sql="insert into achat values (0,:User_ID,:Prix_total);";
+    $achat_args=array(
+        "User_ID"=>$currentUser->ID,
+        "Prix_total"=>$currentCart->totalPrice
+    );
+    var_dump($achat_args);
+    $achat_ID = $db->rowInsert($sql,$achat_args);
+    var_dump($sql);
 
     /*DANS UN FOREACH* : */
 
@@ -99,25 +108,20 @@ if($responseArray['ACK'] =='Success'){
         );
 
 
-        $db=new database();
+
         $sql="insert into licence values (0,:Licence_Type,:Licence_Serial,:Licence_Prix,:Licence_Logiciel);";
 
         $db->rowInsert($sql,$key_args);
-        $sql="insert into achat values (0,:User_ID,:Prix_total)";
-        $achat_args=array(
-        "User_ID"=>$currentUser->ID,
-            "Prix_total"=>$currentCart->totalPrice
-        );
-        $achat_ID = $db->rowInsert($sql,$achat_args);
-        var_dump($achat_ID);
+
+
         $sql="insert into achat_item values (0,:ID_achat,:ID_logiciel,:ID_Type_Licence,:prix_item)";
         $achat_item_args=array(
             "ID_achat"=>$achat_ID,
             "ID_logiciel"=>$value['ID'],
-            "ID_Type_Licence"=>$value['ID_Type_Licence'],
-            "prix_item"=>$value['$prix_total']
+            "ID_Type_Licence"=>$value['ID_type_licence'],
+            "prix_item"=>$value['prix_total']
         );
-        var_dump($achat_item_args);
+
         $achat_item_ID = $db->rowInsert($sql,$achat_item_args);
 echo "Votre paiement a bien été validé , vous trouverez votre licence dans votre espace compte , rubrique 'mes licences' ";
 
