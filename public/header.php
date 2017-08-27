@@ -1,7 +1,8 @@
 <?php
 
 $_SESSION["connected"]=0;
-print_r($_SESSION['cart']);
+$currentUser=new UserController($_SESSION['user']);
+var_dump(OrderController::getOrders($currentUser->ID));
 if(isset($_SESSION['cart'])){
 $count = $_SESSION['cart']['count'];
 if ($count > 0){

@@ -10,9 +10,9 @@ if(isset($_POST['product_id']) && isset($_POST['licence_id'])){
     $cart = new CartController($_SESSION['cart']);
 
     $cart->addToCart($produit);
-    echo $cart->count;
+    echo "<script>alert('produit ajouté a votre panier');</script>";
 
 }
 else{
-    echo "PAS OK";
+    echo "<script>alert('une erreur est survenu , veuillez reessayer...');</script>";
 }

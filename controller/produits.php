@@ -6,7 +6,7 @@ $html="";
     foreach ($productList as $soft){
         $html.=" <div class=\"col-lg-6\"><table><tr>";
         $html.="<td><img src='".URL."/public/img/soft1.jpg'/></td>";
-        $html.="  <td class=\"\"><h2>Produit 1</h2></td>";
+        $html.="  <td class=\"\"><h2>".$soft['Nom']."</h2></td>";
         $html.="<td class=\"\"> 
                                       <select class=\"form-control\" id='sel".$soft['ID']."'>
                                                         <option value=\"\" selected disabled>Selecionnez licence...</option>";

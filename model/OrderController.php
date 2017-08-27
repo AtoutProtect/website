@@ -8,59 +8,55 @@
  */
 class OrderController
 {
-    public $id;
-    public $user;
-    public $products;
-    public $total_price;
+    public $Achat_ID;
+    public $User_ID;
+    public $products=array();
+    public $date;
+    public $Prix_total;
 
-    public function saveOrder(){
-        
+
+    function __construct($args=null){
+
+        if ($args !=null){
+            foreach($args as $key => $val) {
+                $this->{$key} = $val;
+            }
+
+        }
+
     }
 
-    public function setId($id)
-    {
-        $this->id = $id;
-    }
+    public static function getOrders($user_ID) {
 
-    public function getId()
-    {
-        return $this->id;
-    }
+        $db = new database();
+        $orders=array();
 
-    public function getTotalPrice()
-    {
-        return $this->total_price;
-    }
 
-    public function getProducts()
-    {
-        return $this->products;
-    }
+        $ordersrequest=$db->rowSelect(array("User_ID"=>$user_ID),array("achat"),10);
 
-    public function getUser()
-    {
-        return $this->user;
-    }
+        foreach ($ordersrequest as $key=>$value){
+            $order=new OrderController($value);
 
-    public function setProducts($products)
-    {
-        $this->products = $products;
-    }
 
-    public function setTotalPrice($total_price)
-    {
-        $this->total_price = $total_price;
-    }
+            $licences=$db->rowSelect(array("achat_ID"=>$value['Achat_ID']),array("licence"),10);
 
-    public function setUser($user)
-    {
-        $this->user = $user;
+            foreach($licences as $k=>$v){
+                // $licence = new LicenceController($value);
+                array_push($order->products,$v);
+            }
+
+            array_push($orders,$order);
+
+        }
+
+
+        return $orders;
     }
 
     public function insertOrder($user)
     {
-        $user = serialize($order);
-        put($user,"commande");
+
+       // put($user,"commande");
     }
 
 

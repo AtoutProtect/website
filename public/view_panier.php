@@ -32,7 +32,7 @@
         <td id="nom_produit"><?php echo $product['nom'] ?> :</td>
         <td>1</td>
         <td><?php echo $product['type_licence'] ?></td>
-        <td id="prix_produit"><?php echo $product['prix_total'] ?>  </td>
+        <td id="prix_produit"><?php echo $product['prix_total'] ?> € </td>
         <td><button onclick="deleteProduct(this);" id="<?php echo $product['ID'] ?>" class="btn btn-danger">Supprimer</button></td>
     </tr>
     <?php } ?>

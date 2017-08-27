@@ -43,7 +43,6 @@ class CartController
     "prix_total"=>$typeLicence->Coeficient_prix*$product['Prix']
     ));
 
-    var_dump($typeLicence->Coeficient_prix*$product['Prix']);
 $this->count++;
 $this->totalPrice=$this->totalPrice+$typeLicence->Coeficient_prix*$product['Prix'];
 /*var_dump($this->totalPrice);

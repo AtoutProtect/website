@@ -1055,3 +1055,13 @@ li{
 .bloc_produits li,.bloc_produits ul{
     width: 100%;
 }
+
+.bloc_produits h2{
+	font-size: 16px;
+}
+
+.licences li{
+	text-align: justify;
+	border:none !important;
+
+}

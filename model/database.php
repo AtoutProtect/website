@@ -43,13 +43,12 @@ public function callSP($name,$params){
 
     public  function rowInsert($sql,$array_data=null)
     {
-try {
+
     $result = false;
     // $db = new PDO('mysql:host=localhost;dbname=bdd_ap','root','');
     $db = new PDO('mysql:host=mysql-atout-protect.alwaysdata.net;dbname=atout-protect_bdd', '136225_root', '1c1a2r1e');
     $sth = $db->prepare($sql);
-var_dump($sql);
-var_dump($array_data);
+
 
     if ($array_data != null) {
         if (isset($array_data['ID'])) {
@@ -73,11 +72,9 @@ var_dump($array_data);
 
     return $result;
 }
-catch (PDOException $e){
-        var_dump($e->getMessage());
-    }
 
-    }
+
+    
 
     public  function rowUpdate($args,$table,$conditions=null)
     {

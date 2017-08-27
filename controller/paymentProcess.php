@@ -83,17 +83,17 @@ if($responseArray['ACK'] =='Success'){
     ));
     $response=curl_exec($curl);
     curl_close($curl);
-    $responseArray=array();
-    parse_str($response,$responseArray);
+    $responseArray2=array();
+
+    parse_str($response,$responseArray2);
     $db=new database();
-    $sql="insert into achat values (0,:User_ID,:Prix_total);";
+    $sql="insert into achat values (0,:User_ID,:Prix_total,:Date_achat);";
     $achat_args=array(
         "User_ID"=>$currentUser->ID,
-        "Prix_total"=>$currentCart->totalPrice
+        "Prix_total"=>$currentCart->totalPrice,
+        "Date_achat"=>date("Y-m-d")
     );
-    var_dump($achat_args);
     $achat_ID = $db->rowInsert($sql,$achat_args);
-    var_dump($sql);
 
     /*DANS UN FOREACH* : */
 
@@ -105,16 +105,19 @@ if($responseArray['ACK'] =='Success'){
             "Licence_Serial"=>$generated_key,
             "Licence_Prix"=>$value['prix_total'],
             "Licence_Logiciel"=>$value['ID'],
+            "achat_ID"=>$achat_ID,
+            "Licence_libelle"=>$responseArray['L_PAYMENTREQUEST_0_NAME'.$key]
         );
+        var_dump($key_args);
 
 
 
-        $sql="insert into licence values (0,:Licence_Type,:Licence_Serial,:Licence_Prix,:Licence_Logiciel);";
+        $sql="insert into licence values (0,:Licence_Type,:Licence_Serial,:Licence_Prix,:Licence_Logiciel,:achat_ID,:Licence_libelle);";
 
         $db->rowInsert($sql,$key_args);
 
 
-        $sql="insert into achat_item values (0,:ID_achat,:ID_logiciel,:ID_Type_Licence,:prix_item)";
+       /* $sql="insert into achat_item values (0,:ID_achat,:ID_logiciel,:ID_Type_Licence,:prix_item)";
         $achat_item_args=array(
             "ID_achat"=>$achat_ID,
             "ID_logiciel"=>$value['ID'],
@@ -122,7 +125,7 @@ if($responseArray['ACK'] =='Success'){
             "prix_item"=>$value['prix_total']
         );
 
-        $achat_item_ID = $db->rowInsert($sql,$achat_item_args);
+        $achat_item_ID = $db->rowInsert($sql,$achat_item_args);*/
 echo "Votre paiement a bien été validé , vous trouverez votre licence dans votre espace compte , rubrique 'mes licences' ";
 
 
