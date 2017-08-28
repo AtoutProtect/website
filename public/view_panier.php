@@ -4,14 +4,14 @@
 
 
    <div class="row mb50">
-       <div class="col-lg-8">
+       <div class="col-lg-12 text-center">
            <h1 id="panier">Mon Panier </h1><a href="/payment" class="btn btn-success">Finaliser mes achats</a>
         </div>
    </div>
-   <div class="row">
-       <div class="col-lg-8">
-    <div class="bloc_panier">
-<table class="table table-striped table_panier">
+   <div class="row text-center">
+       <div class="col-lg-12 text-center">
+
+<table class="table table-striped table_panier" style="width:60%;margin-left:auto;margin-right:auto;">
 
     <tr>
 
@@ -39,32 +39,9 @@
 
 
 </table>
-</div>
-</div>
-<div class="col-lg-4">
-    <div class="menu_profil">
 
-        <ul class="ul_menu_profil">
-
-            <li>
-                <a href="">Mon panier</a>
-            </li>
-            <li>
-                <a href="">Mes coordonnées</a>
-            </li>
-            <li>
-                <a href="">Mes moyens de paiements</a>
-            </li>
-            <li>
-                <a href="">Mes commandes</a>
-            </li>
-            <li>
-                <a href="">Deconnection</a>
-            </li>
-
-        </ul>
-    </div>
 </div>
+
 </div>
 <script>
 function deleteProduct(element){

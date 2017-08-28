@@ -10,7 +10,7 @@ if(isset($_POST['product_id']) && isset($_POST['licence_id'])){
     $cart = new CartController($_SESSION['cart']);
 
     $cart->addToCart($produit);
-    echo "<script>alert('produit ajouté a votre panier');</script>";
+    echo "<script>alert('produit ajouté a votre panier');window.location.reload();</script>";
 
 }
 else{

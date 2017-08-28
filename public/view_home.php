@@ -16,9 +16,13 @@
       <div class="carousel-caption">
         <h1>Atout Protect</h1>
         <h4>Gerer vos solutions en un click.</h4>
+        <?php
+        if (!isset($_SESSION['user'])){
+         ?>
           <a href="/inscription">
               <button type="button" class="btn btn-primary btn-lg">S'inscrire</button>
           </a>
+          <?php } ?>
       </div>
     </div>
 
@@ -28,9 +32,13 @@
         <h1>Atout Protect</h1>
         <h4>Acceder a toutes nos solutions.</h4>
 
-        <a href="/inscription">
-         <button type="button" class="btn btn-primary btn-lg">S'inscrire</button>
-        </a>
+         <?php
+         if (!isset($_SESSION['user'])){
+             ?>
+             <a href="/inscription">
+                 <button type="button" class="btn btn-primary btn-lg">S'inscrire</button>
+             </a>
+         <?php } ?>
 
       </div>
     </div>

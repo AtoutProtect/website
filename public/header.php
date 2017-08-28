@@ -1,13 +1,16 @@
 <?php
-
+$usercontroller=new UserController($_SESSION['user']);
 $_SESSION["connected"]=0;
-$currentUser=new UserController($_SESSION['user']);
-var_dump(OrderController::getOrders($currentUser->ID));
+
 if(isset($_SESSION['cart'])){
 $count = $_SESSION['cart']['count'];
 if ($count > 0){
 
     $html_count="<span class='badge'>".$count."</span>";
+}
+else{
+    $html_count="<span style='display: none;' class='badge'>".$count."</span>";
+
 }
 
 }
@@ -56,7 +59,16 @@ if ($count > 0){
                     </li>
                 </ul>
                 <ul class="nav navbar-nav text-right">
-                    <li><a href="/compte">Mon compte</a></li>
+                    <?php
+                    if (isset($_SESSION['user'])){
+
+                       echo(" <li><a href=\"/compte\">Mon compte</a></li>");
+                     }
+                    else {
+                        echo(" <li><a href=\"/compte\">connexion</a></li>");
+                    }
+                    ?>
+
                     <li><a href="/panier">Panier<?php if(isset($html_count)){ echo $html_count; }?></a></li>
                     <li><a href="/contact">Contact</a></li>
                 </ul>

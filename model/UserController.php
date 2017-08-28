@@ -36,6 +36,7 @@ class UserController
     */
 
 public function connect(){
+    $_SESSION['isconnected']=1;
     $this->set();
 }
 

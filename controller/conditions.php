@@ -1,10 +1,3 @@
-<div class="corp">
-   
-        <div class="row">
-<div class="home_menu">
-        </div>
+<?php
 
-    
-</div>
-
-</div>
+require WEBROOT.'/public/view_conditions.php';

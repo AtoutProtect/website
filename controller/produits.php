@@ -9,7 +9,7 @@ $html="";
         $html.="  <td class=\"\"><h2>".$soft['Nom']."</h2></td>";
         $html.="<td class=\"\"> 
                                       <select class=\"form-control\" id='sel".$soft['ID']."'>
-                                                        <option value=\"\" selected disabled>Selecionnez licence...</option>";
+                                                        <option value=\"\" selected disabled>Selectionnez licence...</option>";
                                                         foreach (ProductController::getTypeLicence() as $licence){
                                                             $html.="  <option value='".$licence['Type_ID']."'>".$licence['Nom_type_licence']."</option>";
                                                         }

@@ -16,7 +16,9 @@ if(!empty($_POST['email']) && !empty($_POST['passw']) ){
 if(!empty($existingUser)){
 $userController = new UserController($existingUser);
 $userController->connect();
-echo"Vous etes maintenant connecté...<script>location.reload();</script>";
+
+echo("<div class='col-lg-12 text-center'><div class=\"alert alert-success text-center\"> Vous etes maintenant connecté...</div></div><script>location.reload();</script>");
+
 
 }
 else{

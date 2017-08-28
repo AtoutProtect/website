@@ -5,6 +5,7 @@ require "webdefinition.php";/*Fichier a appeler uniquement dans l'index ainsi qu
 
 if(isset($_POST['deconnection']) && $_POST['deconnection']==1){
 	session_destroy();
+	header("Location: ".URL);
 }
 
 if(!isset($_SESSION['cart'])){

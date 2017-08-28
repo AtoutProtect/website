@@ -32,6 +32,7 @@
                 success : function(e){
                     
                     $('.badge').empty();
+                    $('.badge').css('display','initial');
                     $('.badge').append(e);
                 }
 

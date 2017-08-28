@@ -143,6 +143,7 @@ return $result;
             }
 
             if ($limit==1){
+
                 $sql.=" limit 1";
                 $sth = $db->prepare($sql);
                 $sth->execute($args);

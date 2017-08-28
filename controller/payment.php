@@ -23,12 +23,12 @@ $user_API='adrien.carre_api1.limayrac.fr';
  );
 
  foreach ($currentCart->products as $key=>$value){
-     print_r($value);
-     print_r("<br>");
+
+
      $args_API['L_PAYMENTREQUEST_0_NAME'.$key]=$value['nom'].": licence ".$value['type_licence'];
      $args_API['L_PAYMENTREQUEST_0_AMT'.$key]=$value['prix_total'];
  }
- print_r($args_API);
+
  $args_API=http_build_query($args_API);
 $endpoint_sandbox='https://api-3t.sandbox.paypal.com/nvp';
 $endpoint='https://api-3t.paypal.com/nvp';
@@ -46,14 +46,19 @@ $response=curl_exec($curl);
 curl_close($curl);
 $responseArray=array();
 parse_str($response,$responseArray);
-var_dump($responseArray);
 
+$html="<div class='col-lg-12 text-center'>";
 if($responseArray['ACK'] =='Success'){
-   echo"<a class='btn btn-primary' href='https://www.sandbox.paypal.com/webscr?cmd=_express-checkout&useraction=commit&token=".$responseArray['TOKEN']."'>PAYER</a>";
+
+
+
+    $html.="<a class='btn btn-primary' style='margin-top:15px;font-size:20px;' href='https://www.sandbox.paypal.com/webscr?cmd=_express-checkout&useraction=commit&token=".$responseArray['TOKEN']."'>PAYER AVEC PAYPAL</a>";
+
 }
 else{
-    echo 'ERREUR';
+    $html.="Une erreur est survenu , veuillez recharger la page...";
 }
+$html.="</div>";
 
 
 

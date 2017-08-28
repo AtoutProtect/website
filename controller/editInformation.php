@@ -12,7 +12,7 @@ $args=array(
 $key=>$value
 
 );
-var_dump($args);
+
 $conditions=array(
 "ID"=>$usercontroller->ID
 );
